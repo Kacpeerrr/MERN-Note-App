@@ -9,7 +9,6 @@ function EditNote(props) {
 		const value = event.target.value
 		setTitle(value)
 	}
-
 	const changeDescHandler = event => {
 		const value = event.target.value
 		setDesc(value)
@@ -19,7 +18,7 @@ function EditNote(props) {
         const note = {
             title: title,
             body: desc,
-            id: props.id
+            _id: props._id
         }
         props.onEdit(note)
     }

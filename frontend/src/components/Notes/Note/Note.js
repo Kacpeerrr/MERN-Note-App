@@ -11,7 +11,7 @@ function Note(props) {
 		props.onEdit({
 			title: props.title,
 			body: props.body,
-			id: props.id,
+			_id: props._id,
 		})
 	}
 
@@ -22,7 +22,7 @@ function Note(props) {
 			<button onClick={ editHandler }>edytuj</button>
 			<button
 				className='delete'
-				onClick={() => props.onDelete(props.id)}>
+				onClick={() => props.onDelete(props._id)}>
 				usuń
 			</button>
 		</div>

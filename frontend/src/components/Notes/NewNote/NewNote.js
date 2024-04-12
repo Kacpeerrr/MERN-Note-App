@@ -1,6 +1,5 @@
-//Tworzymy komponent do tworzenia notatek
-
 import React, { useState } from 'react'
+
 
 function NewNote(props) {
 	const [showForm, setShowForm] = useState(false)
@@ -24,10 +23,8 @@ function NewNote(props) {
 		}
 
 		props.onAdd(note)
-
 		setTitle('')
 		setDesc('')
-        // oraz chowamy notatkę
         setShowForm(false)
 	}
 
