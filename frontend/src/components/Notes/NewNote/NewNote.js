@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-
 function NewNote(props) {
 	const [showForm, setShowForm] = useState(false)
 	const [title, setTitle] = useState('')
@@ -23,6 +22,7 @@ function NewNote(props) {
 		}
 
 		props.onAdd(note)
+
 		setTitle('')
 		setDesc('')
         setShowForm(false)

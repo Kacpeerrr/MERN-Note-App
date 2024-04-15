@@ -5,6 +5,8 @@ import NewNote from './NewNote/NewNote'
 import Modal from 'react-modal'
 import EditNote from '../EditNote/EditNote'
 import axios from '../../axios'
+import {NotificationContainer, NotificationManager} from 'react-notifications'
+import 'react-notifications/lib/notifications.css'
 
 class Notes extends React.Component {
 	constructor(props) {
@@ -38,14 +40,20 @@ class Notes extends React.Component {
 
 	async addNote(note) {
 		const notes = [...this.state.notes]
-		const res = await axios.post('/notes', note)
-		const newNote = res.data
-		notes.push(newNote)
-		this.setState({ notes })
+		//W ceu walidacji, wkładamy prawie wszystko do bloku try, catch
+		try {
+			const res = await axios.post('/notes', note)
+			const newNote = res.data
+			notes.push(newNote)
+			this.setState({ notes })
+		} catch (err) {
+			NotificationManager.error(err.response.data.message)
+		}
 	}
 
 	async editNote(note) {
 		await axios.put('/notes/' + note._id, note)
+
 		const notes = [...this.state.notes]
 		const index = notes.findIndex(x => x._id === note._id)
 		if (index >= 0) {
@@ -67,6 +75,7 @@ class Notes extends React.Component {
 	render() {
 		return (
 			<div>
+				<NotificationContainer />
 				<p>Moje Notatki</p>
 
 				<NewNote 

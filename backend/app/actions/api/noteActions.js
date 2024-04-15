@@ -36,8 +36,10 @@ class NoteActions {
 		note.body = body
 
 		await note.save()
+
 		res.status(201).json(note)
 	}
+
 
 	async deleteNote(req, res) {
 		const id = req.params.id
